@@ -9,8 +9,8 @@ public class Solution {
     public static int removeDuplicatesElements(int[] nums, int val) {
         int count = 0;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != val) {
+        for (int num : nums) {
+            if (num != val) {
                 count++;
             }
         }
