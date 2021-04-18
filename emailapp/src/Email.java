@@ -11,6 +11,7 @@ public class Email {
     private String password;
     private final int mailboxCapacity;
     private String department;
+    private int freeMailboxSpace;
 
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
@@ -18,6 +19,7 @@ public class Email {
 
         this.department = setDepartment();
         mailboxCapacity = MAIL_BOX_CAPACITY;
+        freeMailboxSpace = mailboxCapacity;
         this.password = generateRandomPassword();
         this.email = setEmail();
     }
@@ -66,6 +68,10 @@ public class Email {
 
     public String getEmail() {
         return this.email;
+    }
+
+    public int getFreeMailboxSpace() {
+        return this.freeMailboxSpace;
     }
 
     /**
