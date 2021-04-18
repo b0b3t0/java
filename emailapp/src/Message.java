@@ -2,11 +2,13 @@ import java.util.Scanner;
 
 public class Message {
 
+    private final String messageName;
     private final Email sendFrom;
     private final Email sendTo;
     private String content;
 
-    public Message(Email sendFrom, Email sendTo) {
+    public Message(String messageName, Email sendFrom, Email sendTo) {
+        this.messageName = messageName;
         this.sendFrom = sendFrom;
         this.sendTo = sendTo;
         this.content = writeMessage();
@@ -26,6 +28,10 @@ public class Message {
         }
 
         return message.toString();
+    }
+
+    public String getMessageName() {
+        return this.messageName;
     }
 
     public Email getSendFrom() {
