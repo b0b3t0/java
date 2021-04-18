@@ -61,7 +61,7 @@ public class Email {
     }
 
     public String getFullName() {
-        return this.firstName + " " + this.lastName;
+        return this.getFirstName() + this.getLastName();
     }
 
     public String getEmail() {
@@ -95,9 +95,9 @@ public class Email {
         return "Email {" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                ", mailboxCapacity=" + mailboxCapacity +
-                ", department='" + department + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", mailboxCapacity=" + getMailboxCapacity() +
+                ", department='" + getDepartment() + '\'' +
                 "} ";
     }
 
@@ -105,8 +105,8 @@ public class Email {
      * Show user information for the email: full name, department, password and mail capacity
      */
     public void showInfo() {
-        System.out.println("Name: " + firstName + " " + lastName
-                +"\nDepartment: " + department
+        System.out.println("Name: " + this.getFullName()
+                +"\nDepartment: " + getDepartment()
                 + "\nPassword: " + password
                 + "\nMailCapacity: " + mailboxCapacity);
     }
