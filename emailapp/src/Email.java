@@ -1,13 +1,15 @@
 import java.util.Scanner;
 
 public class Email {
-    private final static int MAIL_BOX_CAPACITY = 1000;
+    private final static String MAIL_BOX_CAPACITY = "1000mb";
     private final static int DEFAULT_PASSWORD_LENGTH = 8;
+    private final static String DOMAIN = "company.com";
 
     private final String firstName;
     private final String lastName;
+    private final String email;
     private String password;
-    private final int mailboxCapacity;
+    private final String mailboxCapacity;
     private String department;
 
     public Email(String firstName, String lastName) {
@@ -16,7 +18,8 @@ public class Email {
 
         this.department = setDepartment();
         mailboxCapacity = MAIL_BOX_CAPACITY;
-        this.password = generateRandomPassword(DEFAULT_PASSWORD_LENGTH);
+        this.password = generateRandomPassword();
+        this.email = setEmail();
     }
 
     public String getFirstName() {
@@ -36,31 +39,20 @@ public class Email {
     }
 
     private String setDepartment() {
-        System.out.println("Enter your department code:\n1 for Sales\n2 for Development\n3 for Accounting\n0 for none");
+        System.out.println("Enter your department code:\n1 for Sales\n2 for Development\n3 for Accounting");
 
         Scanner scanner = new Scanner(System.in);
         int departmentChoice = scanner.nextInt();
-        String department = "";
 
-        switch (departmentChoice) {
-            case 1:
-                department = "sales";
-                break;
-            case 2:
-                department = "dev";
-                break;
-            case 3:
-                department = "accounting";
-                break;
-            case 0:
-                department = "";
-                break;
-        }
-
-        return department;
+        return switch (departmentChoice) {
+            case 1 -> "sales";
+            case 2 -> "dev";
+            case 3 -> "accounting";
+            default -> "";
+        };
     }
 
-    public int getMailboxCapacity() {
+    public String getMailboxCapacity() {
         return mailboxCapacity;
     }
 
@@ -72,16 +64,30 @@ public class Email {
         return this.firstName + " " + this.lastName;
     }
 
-    private String generateRandomPassword(int passwordLength) {
-        String passwordSet = "ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890abvcdefghjklmnopqrstuwxyz";
-        char[] password = new char[passwordLength];
+    public String getEmail() {
+        return this.email;
+    }
 
-        for (int i = 0; i < passwordLength; i++) {
+    /**
+     * Generate random password with creation of email
+     * @return random password using capital and lower letter, numbers from 0 to 9
+     */
+    private String generateRandomPassword() {
+        String passwordSet = "ABCDEFGHIJKLMNOPQRSTUWXYZ1234567890abvcdefghjklmnopqrstuwxyz";
+        char[] password = new char[Email.DEFAULT_PASSWORD_LENGTH];
+
+        for (int i = 0; i < Email.DEFAULT_PASSWORD_LENGTH; i++) {
             int randomNumber = (int) (Math.random() * passwordSet.length());
             password[i] = passwordSet.charAt(randomNumber);
         }
 
         return new String(password);
+    }
+
+    public String setEmail() {
+        return firstName.toLowerCase()
+                + "." + lastName.toLowerCase()
+                + "@" + department + DOMAIN;
     }
 
     @Override
@@ -93,5 +99,15 @@ public class Email {
                 ", mailboxCapacity=" + mailboxCapacity +
                 ", department='" + department + '\'' +
                 "} ";
+    }
+
+    /**
+     * Show user information for the email: full name, department, password and mail capacity
+     */
+    public void showInfo() {
+        System.out.println("Name: " + firstName + " " + lastName
+                +"\nDepartment: " + department
+                + "\nPassword: " + password
+                + "\nMailCapacity: " + mailboxCapacity);
     }
 }
