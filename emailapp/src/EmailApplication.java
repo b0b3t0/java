@@ -4,5 +4,7 @@ public class EmailApplication {
         Email em = new Email("John", "Cena");
         System.out.println(em);
         System.out.println(em.getEmail());
+        em.changePassword("asd123zxc");
+        em.showInfo();
     }
 }
