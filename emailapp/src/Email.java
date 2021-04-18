@@ -103,11 +103,11 @@ public class Email {
     @Override
     public String toString() {
         return "Email {" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", password='" + getPassword() + '\'' +
-                ", mailboxCapacity=" + getMailboxCapacity() +
-                ", department='" + getDepartment() + '\'' +
+                "firstName='" + this.firstName + '\'' +
+                ", lastName='" + this.lastName + '\'' +
+                ", password='" + this.getPassword() + '\'' +
+                ", mailboxCapacity=" + this.getMailboxCapacity() +
+                ", department='" + this.getDepartment() + '\'' +
                 "} ";
     }
 
@@ -116,8 +116,18 @@ public class Email {
      */
     public void showInfo() {
         System.out.println("Name: " + this.getFullName()
-                +"\nDepartment: " + getDepartment()
-                + "\nPassword: " + password
-                + "\nMailCapacity: " + mailboxCapacity + "mb");
+                +"\nDepartment: " + this.getDepartment()
+                + "\nPassword: " + this.getPassword()
+                + "\nMailCapacity: " + this.getMailboxCapacity() + "mb");
+    }
+
+    public void sendMessage(Message message) {
+        if (this.getEmail().equals(message.getSendTo().getEmail())) {
+            addMessage(message);
+        }
+    }
+
+    private void addMessage(Message message) {
+        messages.add(message);
     }
 }
