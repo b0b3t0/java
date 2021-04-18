@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Email {
-    private final static int MAIL_BOX_CAPACITY = 1000;
+    private final static double MAIL_BOX_CAPACITY = 1000;
     private final static int DEFAULT_PASSWORD_LENGTH = 8;
     private final static String DOMAIN = "company.com";
 
@@ -12,9 +12,9 @@ public class Email {
     private final String lastName;
     private final String email;
     private String password;
-    private final int mailboxCapacity;
+    private final double mailboxCapacity;
     private String department;
-    private int freeMailboxSpace;
+    private double freeMailboxSpace;
 
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
@@ -44,21 +44,13 @@ public class Email {
         return department;
     }
 
-    private String setDepartment() {
-        System.out.println("Enter your department code:\n1 for Sales\n2 for Development\n3 for Accounting");
-
-        Scanner scanner = new Scanner(System.in);
-        int departmentChoice = scanner.nextInt();
-
-        return switch (departmentChoice) {
-            case 1 -> "sales";
-            case 2 -> "dev";
-            case 3 -> "accounting";
-            default -> "";
-        };
+    public void showMessages() {
+        for (Message m :messages) {
+            System.out.println(m.getMessageName());
+        }
     }
 
-    public int getMailboxCapacity() {
+    public double getMailboxCapacity() {
         return mailboxCapacity;
     }
 
@@ -74,8 +66,22 @@ public class Email {
         return this.email;
     }
 
-    public int getFreeMailboxSpace() {
+    public double getFreeMailboxSpace() {
         return this.freeMailboxSpace;
+    }
+
+    private String setDepartment() {
+        System.out.println("Enter your department code:\n1 for Sales\n2 for Development\n3 for Accounting");
+
+        Scanner scanner = new Scanner(System.in);
+        int departmentChoice = scanner.nextInt();
+
+        return switch (departmentChoice) {
+            case 1 -> "sales";
+            case 2 -> "dev";
+            case 3 -> "accounting";
+            default -> "";
+        };
     }
 
     /**
@@ -121,7 +127,7 @@ public class Email {
                 + "\nMailCapacity: " + this.getMailboxCapacity() + "mb");
     }
 
-    public void sendMessage(Message message) {
+    public void save(Message message) {
         if (this.getEmail().equals(message.getSendTo().getEmail())) {
             addMessage(message);
         }
@@ -129,5 +135,6 @@ public class Email {
 
     private void addMessage(Message message) {
         messages.add(message);
+        this.freeMailboxSpace -= message.getContent().length() * 0.01;
     }
 }
