@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Email {
-    private final static String MAIL_BOX_CAPACITY = "1000mb";
+    private final static int MAIL_BOX_CAPACITY = 1000;
     private final static int DEFAULT_PASSWORD_LENGTH = 8;
     private final static String DOMAIN = "company.com";
 
@@ -9,7 +9,7 @@ public class Email {
     private final String lastName;
     private final String email;
     private String password;
-    private final String mailboxCapacity;
+    private final int mailboxCapacity;
     private String department;
 
     public Email(String firstName, String lastName) {
@@ -52,7 +52,7 @@ public class Email {
         };
     }
 
-    public String getMailboxCapacity() {
+    public int getMailboxCapacity() {
         return mailboxCapacity;
     }
 
@@ -108,6 +108,6 @@ public class Email {
         System.out.println("Name: " + this.getFullName()
                 +"\nDepartment: " + getDepartment()
                 + "\nPassword: " + password
-                + "\nMailCapacity: " + mailboxCapacity);
+                + "\nMailCapacity: " + mailboxCapacity + "mb");
     }
 }
