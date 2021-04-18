@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Email {
@@ -5,6 +7,7 @@ public class Email {
     private final static int DEFAULT_PASSWORD_LENGTH = 8;
     private final static String DOMAIN = "company.com";
 
+    private List<Message> messages;
     private final String firstName;
     private final String lastName;
     private final String email;
@@ -16,6 +19,7 @@ public class Email {
     public Email(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+        messages = new ArrayList<>();
 
         this.department = setDepartment();
         mailboxCapacity = MAIL_BOX_CAPACITY;
