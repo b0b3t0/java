@@ -5,7 +5,7 @@ public class Message {
     private final String messageName;
     private final Email sendFrom;
     private final Email sendTo;
-    private String content;
+    private final String content;
 
     public Message(String messageName, Email sendFrom, Email sendTo) {
         this.messageName = messageName;
