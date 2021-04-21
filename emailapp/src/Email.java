@@ -45,8 +45,9 @@ public class Email {
     }
 
     public void showMessages() {
+        System.out.println("Messages: ");
         for (Message m :messages) {
-            System.out.println(m.getMessageName());
+            System.out.println("Title: " + m.getMessageName());
         }
     }
 
