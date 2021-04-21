@@ -47,6 +47,7 @@ public class Message {
     }
 
     public void showMessage() {
+        System.out.println("Title: " + this.getMessageName());
         System.out.println("----------");
         System.out.println("send from: " + this.getSendFrom().getEmail());
         System.out.println("----------");
@@ -55,5 +56,6 @@ public class Message {
         System.out.println("Message:");
         System.out.println(this.getContent());
         System.out.println("----------");
+        System.out.println();
     }
 }
