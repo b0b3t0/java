@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Message {
@@ -61,5 +62,21 @@ public class Message {
         System.out.println(this.getContent());
         System.out.println("----------");
         System.out.println();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return Objects.equals(messageName, message.messageName)
+                && Objects.equals(sendFrom, message.sendFrom)
+                && Objects.equals(sendTo, message.sendTo)
+                && Objects.equals(content, message.content);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(messageName, sendFrom, sendTo, content);
     }
 }
