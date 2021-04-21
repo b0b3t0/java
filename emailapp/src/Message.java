@@ -14,6 +14,10 @@ public class Message {
         this.content = writeMessage();
     }
 
+    /**
+     * We end message by pressing two times key Enter
+     * @return value for the content field of the class
+     */
     private String writeMessage() {
         StringBuilder message = new StringBuilder();
         Scanner scanner = new Scanner(System.in);
