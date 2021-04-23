@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -21,15 +24,19 @@ public class Message {
      */
     private String writeMessage() {
         StringBuilder message = new StringBuilder();
-        Scanner scanner = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("Enter your message");
-        String line = scanner.nextLine();
+        try (reader){
+            System.out.println("Enter your message");
+            String line = reader.readLine();
 
-        while (!line.equals("")) {
-            message.append(line);
+            while (!line.equals("")) {
+                message.append(line);
 
-            line = scanner.nextLine();
+                line = reader.readLine();
+            }
+        } catch (IOException ex) {
+            System.out.println("Something went wrong");
         }
 
         return message.toString();
