@@ -45,9 +45,14 @@ public class Email {
     }
 
     public void showMessages() {
+        if (messages.size() == 0) {
+            return;
+        }
+
         System.out.println("Messages: ");
-        for (Message m :messages) {
-            System.out.println("Title: " + m.getMessageName());
+        for (int i = 0, messagesSize = messages.size(); i < messagesSize; i++) {
+            Message m = messages.get(i);
+            System.out.println((i+ 1) + " Title: " + m.getMessageName());
         }
     }
 
