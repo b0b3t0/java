@@ -19,13 +19,14 @@ public class Message {
 
     /**
      * We end message by pressing two times key Enter
+     *
      * @return value for the content field of the class
      */
     private String writeMessage() {
         StringBuilder message = new StringBuilder();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        try (reader){
+        try (reader) {
             System.out.println("Enter your message");
             String line = reader.readLine();
 
@@ -38,7 +39,13 @@ public class Message {
             System.out.println("Something went wrong");
         }
 
-        return message.toString();
+        String messageAsString = message.toString();
+
+        if (isMessageContentValid(messageAsString)) {
+            return messageAsString;
+        } else {
+            return "Invalid message content, please enter new one";
+        }
     }
 
     public String getMessageName() {
@@ -88,5 +95,9 @@ public class Message {
     @Override
     public int hashCode() {
         return Objects.hash(messageName, sendFrom, sendTo, content);
+    }
+
+    private boolean isMessageContentValid(String content) {
+        return (content != null && !(content.equals("")));
     }
 }
