@@ -126,7 +126,7 @@ public class Email {
     /**
      * Show user information for the email: full name, department, password and mail capacity
      */
-    public void showInfo() {
+    public void showEmailInfo() {
         System.out.println("Name: " + this.getFullName()
                 +"\nDepartment: " + this.getDepartment()
                 + "\nPassword: " + this.getPassword()
