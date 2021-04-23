@@ -72,7 +72,7 @@ public class Email {
         return this.email;
     }
 
-    public double getFreeMailboxSpace() {
+    public double showFreeMailboxSpace() {
         return this.freeMailboxSpace;
     }
 
