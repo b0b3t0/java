@@ -39,13 +39,7 @@ public class Message {
             System.out.println("Something went wrong");
         }
 
-        String messageAsString = message.toString();
-
-        if (isMessageContentValid(messageAsString)) {
-            return messageAsString;
-        } else {
-            return "Invalid message content, please enter new one";
-        }
+        return message.toString();
     }
 
     public String getMessageName() {
@@ -97,7 +91,4 @@ public class Message {
         return Objects.hash(messageName, sendFrom, sendTo, content);
     }
 
-    private boolean isMessageContentValid(String content) {
-        return (content != null && !(content.equals("")));
-    }
 }
